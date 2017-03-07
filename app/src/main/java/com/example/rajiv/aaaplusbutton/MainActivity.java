@@ -1,8 +1,8 @@
 package com.example.rajiv.aaaplusbutton;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -12,17 +12,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
-    EditText height,width;
+    private static final String LOG_TAG = "MainActivity";
+    EditText height, width;
     Button but_add;
     ImageButton but_remove;
-    TextView txtSum,zerotextView;
+    TextView txtSum, zerotextView;
     LinearLayout linearBelowBoard;
-    int e1, e2, e3, e4, e5, e6,e7,e8,e9,e10;
+    int e1, e2, e3, e4, e5, e6, e7, e8, e9, e10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         but_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 LayoutInflater layoutInflater =
                         (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View addView = layoutInflater.inflate(R.layout.row, null);
@@ -44,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
                 width = (EditText) addView.findViewById(R.id.width);
                 height = (EditText) addView.findViewById(R.id.height);
-                zerotextView=(TextView)addView.findViewById(R.id.zerotextView);
+                zerotextView = (TextView) addView.findViewById(R.id.zerotextView);
 
-                width.addTextChangedListener(new MyTextWatcher(height ,width,zerotextView));
-                height.addTextChangedListener(new MyTextWatcher(height ,width,zerotextView));
+                width.addTextChangedListener(new MyTextWatcher(height, width, zerotextView));
+                height.addTextChangedListener(new MyTextWatcher(height, width, zerotextView));
 
 
                 but_remove = (ImageButton) addView.findViewById(R.id.remove);
@@ -60,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
                 but_remove.setOnClickListener(thisListener);
                 linearBelowBoard.addView(addView);
-
             }
 
         });
@@ -68,22 +65,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class MyTextWatcher implements TextWatcher {
-
         EditText mEditText1 = null;
         EditText mEditText2 = null;
         TextView textView = null;
 
-
-
-
-        public MyTextWatcher(EditText mEditText1,EditText mEditText2,TextView textView) {
+        public MyTextWatcher(EditText mEditText1, EditText mEditText2, TextView textView) {
             this.textView = textView;
             this.mEditText1 = mEditText1;
             this.mEditText2 = mEditText2;
-
-
         }
-
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -97,17 +87,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-
-            calCheck(mEditText1,mEditText2,textView);
+            calCheck(mEditText1, mEditText2, textView);
             calCheck2(textView);
         }
     }
 
-    public void calCheck(EditText height,EditText width,TextView zerotextView) {
-
+    public void calCheck(EditText height, EditText width, TextView zerotextView) {
         try {
-
-
             e1 = Integer.parseInt(width.getText().toString());
             e2 = Integer.parseInt(height.getText().toString());
             e3 = e1 * e2;
@@ -119,37 +105,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calCheck2(TextView textView) {
-
-            try {
-                if (linearBelowBoard != null) {
-                    e1 = 0;
-                    for (int i = 0; i < linearBelowBoard.getChildCount(); i++) {
-                        EditText editText1 = getEditTextFromPosition(i);
-                        String str = editText1.getText().toString();
-                        if (str != null && !str.equals("") && str.length() > 0)
-                            e1 = e1 + Integer.parseInt(editText1.getText().toString());
-                    }
+        if (linearBelowBoard != null) {
+            e1 = 0;
+            for (int i = 0; i < linearBelowBoard.getChildCount(); i++) {
+                EditText editText1 = getEditTextFromPosition(i);
+                String str = editText1.getText().toString();
+                Log.d(LOG_TAG, "calCheck2: " + str);
+                if (!str.isEmpty()) {
+                    e1 = e1 + Integer.parseInt(editText1.getText().toString());
                 }
-                txtSum.setText("" + String.valueOf(e1));
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-
+        }
+        txtSum.setText(String.valueOf(e1));
     }
 
-    private EditText getEditTextFromPosition(int position){
-        EditText editText=null;
-        LinearLayout linearLayout = (LinearLayout)linearBelowBoard.getChildAt(position);
-        RelativeLayout relativeLayout = (RelativeLayout)linearLayout.getChildAt(0);
-        View view = relativeLayout.getChildAt(0);
-
-        if (view instanceof EditText) {
-            editText = (EditText) view;
-        } else {
-            view = relativeLayout.getChildAt(1);
-            editText = (EditText) view;
-        }
-        return editText;
+    private EditText getEditTextFromPosition(int position) {
+        return (EditText) linearBelowBoard.getChildAt(position).findViewById(R.id.width);
     }
 }
