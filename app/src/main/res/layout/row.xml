@@ -1,104 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativetop"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true">
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/boardView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <RelativeLayout
-            android:id="@+id/relativetop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:paddingTop="18dp"
+        android:text="Board Size"
+        android:textColor="#FF040106"
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
 
-            <TextView
-                android:id="@+id/boardView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:paddingTop="18dp"
-                android:text="Board Size"
-                android:textColor="#FF040106"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+    <TextView
+        android:id="@+id/xView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="19dp"
+        android:layout_toRightOf="@+id/width"
+        android:text="X"
+        android:textColor="#FF040106"
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
+    <EditText
+        android:id="@+id/height"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/xView"
+        android:ems="10"
+        android:inputType="number"
+        android:paddingLeft="10dp"
+        android:textColor="#FF040106" />
 
-            <TextView
-                android:id="@+id/xView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="19dp"
-                android:layout_toRightOf="@+id/width"
-                android:text="X"
-                android:textColor="#FF040106"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+    <TextView
+        android:id="@+id/zerotextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/height"
+        android:layout_alignBottom="@+id/height"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/height"
+        android:layout_toRightOf="@+id/height"
+        android:clickable="false"
+        android:focusable="false"
+        android:paddingLeft="15dp"
+        android:text="0"
+        android:textColor="#FF040106"
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/height"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="20dp"
-                android:textColor="#FF040106"
-                android:layout_toRightOf="@+id/xView"
-                android:ems="10"
-                android:inputType="number"
-                android:paddingLeft="10dp"/>
+    <EditText
+        android:id="@+id/width"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_toEndOf="@+id/boardView"
+        android:layout_toRightOf="@+id/boardView"
+        android:ems="10"
+        android:inputType="number"
+        android:paddingLeft="10dp"
+        android:textColor="#FF040106" />
 
-
-            <TextView
-                android:id="@+id/zerotextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:focusable="false"
-                android:paddingLeft="15dp"
-                android:text="0"
-                android:textColor="#FF040106"
-                android:textSize="15dp"
-                android:textStyle="bold"
-                android:layout_alignBaseline="@+id/height"
-                android:layout_alignBottom="@+id/height"
-                android:layout_toRightOf="@+id/height"
-                android:layout_toEndOf="@+id/height"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp" />
-
-            <EditText
-                android:id="@+id/width"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="18dp"
-                android:ems="10"
-                android:textColor="#FF040106"
-                android:inputType="number"
-                android:paddingLeft="10dp"
-                android:layout_marginStart="18dp"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/boardView"
-                android:layout_toEndOf="@+id/boardView" />
-
-            <ImageButton
-                android:id="@+id/remove"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_weight="0.20"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
-                android:src="@android:drawable/ic_input_delete"
-                android:background="@android:color/black"
-                android:layout_toRightOf="@+id/zerotextView" />
-
-        </RelativeLayout>
-
-
-    </RelativeLayout>
-
-
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/remove"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/zerotextView"
+        android:layout_weight="0.20"
+        android:background="@android:color/black"
+        android:src="@android:drawable/ic_input_delete" />
+</RelativeLayout>
